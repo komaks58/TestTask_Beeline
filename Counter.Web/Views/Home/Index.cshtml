@@ -1,0 +1,29 @@
+﻿@using System.Web.UI.WebControls
+@using Counter.Domain.Services.CounterService.Models
+@using Counter.Web.Controllers
+@{
+    ViewBag.Title = "Калькулятор";
+}
+
+<div>
+    <form>
+        <div class="form-group">
+            <input type="number" id="value" class="form-control" placeholder="Введите значение" />
+        </div>
+        <div class="form-group">
+            @Html.DropDownList("calculationType",
+                EnumHelper.GetSelectList(typeof(CalculationOperationType)),
+                "Выберите операцию",
+                new { @class = "form-control" })
+            <input type="submit" value="Посчитать" id="submitCount" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <div id="currentTotalValue">Неопределенное значение</div>
+            <input type="submit" value="Поулчить" id="submitUpdateTotal" />
+        </div>
+    </form>
+</div>
+@Scripts.Render("~/scripts/jquery-3.4.1.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+@Scripts.Render("~/scripts/buttonhandlers.js")
